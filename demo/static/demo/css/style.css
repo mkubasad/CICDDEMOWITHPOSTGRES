@@ -1,0 +1,118 @@
+body {
+      margin-left:40px; 
+      margin-right:40px;
+      margin-top:20px; 
+      background-color: lightyellow;
+      color: #3d50dbf2;
+      font-family: Verdana, Tahoma, Arial, sans-serif;
+    }
+    h1.caption {
+      height: 50px;
+      padding-top: 20px;
+      padding-right: 50px;
+      clear:left;
+      background-image: url("/static/demo/images/pexels-efrem-efre-2786187-29644504.jpg");
+      background-size: cover;
+      background-position: 400px 10em;
+      /* background-color: dodgerblue; */
+      /* background-repeat: repeat-x; */
+      color: darkgray;
+      text-align: center; 
+      text-transform: uppercase;
+      letter-spacing: 5px;
+      word-spacing: 15px;
+      /* text-shadow: 0 0 2px navy, 0 0 5px blue; */
+      font-family: Verdana, Tahoma, Geneva, sans-serif;
+    }
+    h2 {
+      /* background-color: darkblue; */
+      font-size: 32px;
+      text-align: center; 
+    }
+    h3 {
+      font-size: 24px;
+      text-align: left; 
+    }
+    input {
+      background-color: antiquewhite;
+    }
+    a.a2, a.a2:visited { /* link styled as button */
+      width:auto;
+      margin: 2px;
+      padding: 5px 5px;
+      border: solid #cccccc 3px;
+      border-radius: 5px;
+      background-color: dodgerblue;
+      color: white;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+      /* font-weight: bold;  */
+    }
+    a.a2:hover {
+      background-color: #86b200;
+    }
+    a.a2:active {
+      background-color: red;
+    }
+    a.a1, a.a1.visited { /* link styled as button */
+      width:auto;
+      margin: 2px 2px;
+      padding: 5px 5px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-weight: bold; 
+    }
+    a.a1:hover {
+      background-color: #86b200;
+    }
+    a.a1:active {
+      background-color: red;
+    }
+    .button1 {
+      width:150px;
+      margin: 20px;
+      padding: .6em;
+      border: solid #cccccc 3px;
+      border-radius: 5px;
+      display: inline-block;
+      /* background-color: #e6e30f; */
+      background-color: dodgerblue;
+      color: white;
+      text-align: center;
+      font-size: 16px;
+      font-weight: bold;  
+      cursor: pointer;
+    }
+    .button1:hover
+    {
+     background-color: #86b200;
+    }
+    .button1:active
+    {
+     background-color: red;
+    }
+    ul.message, p.message {
+      border-style: none none none solid;
+      border-color: red;
+      border-width: large;
+      color: tomato;
+      font-weight: bold;
+      list-style-type:square;
+    }
+    .error {
+      color: tomato;
+      
+    }
+    .required {
+      color:blue;
+    
+    }
+
+    .helptext {
+          font-style: italic;
+          font-size: smaller;
+          color: gray;
+    }        

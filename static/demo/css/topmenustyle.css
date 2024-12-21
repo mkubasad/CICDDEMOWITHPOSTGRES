@@ -1,0 +1,33 @@
+ul.navbar {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: skyblue;
+}
+
+li.navbar {
+  float: left;
+}
+
+.clearfix::after {
+  content: "";  
+  clear: both;
+  display: table;
+}
+
+li.navbar a {
+  display: inline-block;
+  color: white;
+  text-align: center;
+  padding: 5px 16px;
+  text-decoration: none;
+}
+
+li.navbar a:hover {
+  background-color: #111;
+}
+
+.active {
+  background-color: green;
+}

@@ -1,0 +1,18 @@
+server {
+    listen 80;
+    listen [::]:80;
+    server_name 16.170.141.234;
+
+    location /static {
+        alias /home/mk_deployer/CICDDEMO/static;
+        try_files $uri =404;
+    }
+
+    location /demo {
+        proxy_pass http://16.170.141.234:8000;
+        proxy_set_header HOST $host;
+        proxy_set_header X-Forwarded-for $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+        proxy_redirect http://127.0.0.1:8000 http://16.170.141.234:8000
+    }
+}

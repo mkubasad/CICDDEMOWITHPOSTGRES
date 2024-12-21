@@ -1,0 +1,110 @@
+name: Django Tests
+
+on:
+  push: 
+    branches: 
+      - main
+
+  pull_request:
+    branches:
+      - main
+
+  workflow_dispatch:
+
+jobs:
+  build: 
+    runs-on: ubuntu-latest
+    steps: 
+    - uses: actions/checkout@v3
+    - name: Set up Python 
+      uses: actions/setup-python@v2
+      with: 
+        python-version: 3.7
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+    - name: Lint with ruff
+      run: |
+        pip install ruff
+        ruff check .
+    - name: Make django DB migrations
+      run: |
+        python3 manage.py migrate 
+      
+    - name: Coverage report
+      run: |
+        pip install coverage
+        coverage run manage.py test
+        coverage report
+    - name: Django Testing
+      run: |
+        python3 manage.py test
+
+  ##Deployment on successful build and test###############
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - name: Deploy to AWS
+      shell: bash
+      env:
+        PRIVATE_KEY : ${{ secrets.AWS_DEMOSERVERRSAKEY  }}
+      run: |
+        pwd
+        ls -la CiCdDemo
+        mkdir -p ~/.ssh
+        chmod 700 ~/.ssh
+        touch ~/.ssh/private.key
+        chmod 600 ~/.ssh/private.key
+        # echo -e "$PRIVATE_KEY" | tr -d '\r' > ~/.ssh/private.key
+        echo -e "$PRIVATE_KEY" > ~/.ssh/private.key
+        ssh-keyscan ec2-16-170-141-234.eu-north-1.compute.amazonaws.com > ~/.ssh/known_hosts
+        eval "$(ssh-agent -s)"
+        ssh-add ~/.ssh/private.key  
+        
+        echo "copying project files from github to aws ec2"
+        
+        rsync -rv -e ssh --exclude '.*' --exclude '*.toml' --exclude '*.bat' --exclude '*.cfg' --exclude 'venv' `pwd` mk_deployer@ec2-16-170-141-234.eu-north-1.compute.amazonaws.com:~
+
+        ssh mk_deployer@ec2-16-170-141-234.eu-north-1.compute.amazonaws.com  "
+          echo "Logged into EC2";
+          # move deploy settings file 
+          cd ~/CICDDEMO
+          mv deploy/deploy-settings.py CiCdDemo/settings.py # overwrites the dev environments settings.py file
+          mv deploy/deploy-requirements.txt requirements.txt # overwrites the dev environments requirements.txt file
+
+          # create and activate virtual environment
+          echo "Creating and activating virtual environment"
+          cd .. 
+          python3 -m venv myEnv
+          cd ~/CICDDEMO
+          source ../myEnv/bin/activate
+
+          # install dependencies
+          echo "Installing dependencies"
+          python3 -m pip install --upgrade pip
+          pip install -r requirements.txt
+          pip install gunicorn
+
+          # Make django DB migrations
+          echo "Making DB migrations"
+          python3 manage.py migrate
+
+          # Collect static files of the project
+          echo 'yes' | python3 manage.py collectstatic
+
+
+          # Copy system data into DB (To be done)
+
+          # Restart the gunicorn and nginx servers
+          echo "Restarting gunicorn and nginx servers"
+          chmod +x deploy/run.sh
+          source deploy/run.sh
+
+          exit
+        " 
+        #################################
+
+  

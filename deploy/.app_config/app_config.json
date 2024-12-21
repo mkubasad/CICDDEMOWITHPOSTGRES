@@ -1,0 +1,12 @@
+{
+    "SECRET_KEY": "django-insecure-i7+d*e7#4m-@c6hqiuj48z4+ck^2-^qq!=xf9v=jh-8yx0nij9",
+    "EMAIL_USER": "",
+    "EMAIL_PASSWORD": "",
+    "ALLOWED_HOSTS": ["16.170.141.234"],
+    "TIME_ZONE": "UTC",
+    "DATABASE_NAME": "CICDDB",
+    "DATABASE_USER": "demoDev",
+    "DATABASE_USER_PASSWORD": "demoDev123",
+    "DATABASE_HOST_IP": "16.170.141.234",
+    "DATABASE_PORT": "3306"
+}
