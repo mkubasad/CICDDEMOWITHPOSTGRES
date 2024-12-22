@@ -100,10 +100,10 @@ jobs:
 
           # Copy system data into DB (To be done)
 
-          # Restart the gunicorn and nginx servers
-          # echo "Restarting gunicorn and nginx servers"
-          # chmod +x deploy/run.sh
-          # source deploy/run.sh
+          Restart the gunicorn and nginx servers
+          echo "Restarting gunicorn and nginx servers"
+          chmod +x deploy/run.sh
+          source deploy/run.sh
 
           exit
         " 
