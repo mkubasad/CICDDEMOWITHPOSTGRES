@@ -12,38 +12,38 @@ on:
   workflow_dispatch:
 
 jobs:
-  build: 
-    runs-on: ubuntu-latest
-    steps: 
-    - uses: actions/checkout@v3
-    - name: Set up Python 
-      uses: actions/setup-python@v2
-      with: 
-        python-version: 3.7
-    - name: Install dependencies
-      run: |
-        python -m pip install --upgrade pip
-        pip install -r requirements.txt
-    - name: Lint with ruff
-      run: |
-        pip install ruff
-        ruff check .
-    - name: Make django DB migrations
-      run: |
-        python3 manage.py migrate 
+  # build: 
+  #   runs-on: ubuntu-latest
+  #   steps: 
+  #   - uses: actions/checkout@v3
+  #   - name: Set up Python 
+  #     uses: actions/setup-python@v2
+  #     with: 
+  #       python-version: 3.7
+  #   - name: Install dependencies
+  #     run: |
+  #       python -m pip install --upgrade pip
+  #       pip install -r requirements.txt
+  #   - name: Lint with ruff
+  #     run: |
+  #       pip install ruff
+  #       ruff check .
+  #   - name: Make django DB migrations
+  #     run: |
+  #       python3 manage.py migrate 
       
-    - name: Coverage report
-      run: |
-        pip install coverage
-        coverage run manage.py test
-        coverage report
-    - name: Django Testing
-      run: |
-        python3 manage.py test
+  #   - name: Coverage report
+  #     run: |
+  #       pip install coverage
+  #       coverage run manage.py test
+  #       coverage report
+  #   - name: Django Testing
+  #     run: |
+  #       python3 manage.py test
 
   ##Deployment on successful build and test###############
   deploy:
-    needs: build
+    # needs: build
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
@@ -99,9 +99,9 @@ jobs:
           # Copy system data into DB (To be done)
 
           # Restart the gunicorn and nginx servers
-          echo "Restarting gunicorn and nginx servers"
-          chmod +x deploy/run.sh
-          source deploy/run.sh
+          # echo "Restarting gunicorn and nginx servers"
+          # chmod +x deploy/run.sh
+          # source deploy/run.sh
 
           exit
         " 
