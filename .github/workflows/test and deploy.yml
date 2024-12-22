@@ -53,7 +53,7 @@ jobs:
         PRIVATE_KEY : ${{ secrets.AWS_DEMOSERVERRSAKEY  }}
       run: |
         pwd
-        ls -la CiCdDemo
+        # ls -la CICDDEMOWITHPOSTGRES
         mkdir -p ~/.ssh
         chmod 700 ~/.ssh
         touch ~/.ssh/private.key
@@ -71,7 +71,7 @@ jobs:
         ssh mk_deployer@ec2-16-170-141-234.eu-north-1.compute.amazonaws.com  "
           echo "Logged into EC2";
           # move deploy settings file 
-          cd ~/CICDDEMO
+          cd ~/CICDDEMOWITHPOSTGRES
           mv deploy/deploy-settings.py CiCdDemo/settings.py # overwrites the dev environments settings.py file
           mv deploy/deploy-requirements.txt requirements.txt # overwrites the dev environments requirements.txt file
 
@@ -79,7 +79,7 @@ jobs:
           echo "Creating and activating virtual environment"
           cd .. 
           python3 -m venv myEnv
-          cd ~/CICDDEMO
+          cd ~/CICDDEMOWITHPOSTGRES
           source ../myEnv/bin/activate
 
           # install dependencies
