@@ -68,7 +68,7 @@ jobs:
         
         echo "copying project files from github to aws ec2"
         
-        rsync -rv -e ssh --exclude '.*' --exclude '*.toml' --exclude '*.bat' --exclude '*.cfg' --exclude 'venv' `pwd` mk_deployer@ec2-16-170-141-234.eu-north-1.compute.amazonaws.com:~
+        rsync -rv -e ssh --exclude '.*' --exclude '*.toml' --exclude '*.bat' --exclude '*.cfg' --exclude '*env' `pwd` mk_deployer@ec2-16-170-141-234.eu-north-1.compute.amazonaws.com:~
 
         ssh mk_deployer@ec2-16-170-141-234.eu-north-1.compute.amazonaws.com  "
           echo "Logged into EC2";

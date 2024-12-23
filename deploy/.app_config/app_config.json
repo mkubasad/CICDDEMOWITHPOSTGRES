@@ -4,7 +4,7 @@
     "EMAIL_PASSWORD": "",
     "ALLOWED_HOSTS": ["16.170.141.234"],
     "TIME_ZONE": "UTC",
-    "DATABASE_NAME": "CICDDB",
+    "DATABASE_NAME": "cicddb",
     "DATABASE_USER": "demoDev",
     "DATABASE_USER_PASSWORD": "demoDev123",
     "DATABASE_HOST_IP": "16.170.141.234",
