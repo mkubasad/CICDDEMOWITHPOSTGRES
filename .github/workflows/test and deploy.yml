@@ -51,7 +51,8 @@ jobs:
       shell: bash
       env:
         PRIVATE_KEY : ${{ secrets.AWS_DEMOSERVERRSAKEY  }}
-
+        DB_NAME : ${{ secrets.DB_NAME }}
+        DB_USER : ${{ secrets.DB_USER }}
         DB_USER_PASSWORD: ${{ secrets.DB_USER_PASSWORD }}
       run: |
         pwd
@@ -111,7 +112,7 @@ jobs:
           # chmod +x deploy/populatesystemdata.sh
           # sudo -u postgres psql -d "dbname=$DB_NAME user=$DB_USER password=$DB_USER_PASSWORD host='16.170.141.234'" < deploy/systemdata.sql
           # Populate system data 
-          source deploy/populatesystemdata.sh
+          source deploy/populatesystemdata.shgit
 
           # Collect static files of the project
           echo 'yes' | python3 manage.py collectstatic
