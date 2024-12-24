@@ -112,7 +112,7 @@ jobs:
           # chmod +x deploy/populatesystemdata.sh
           # sudo -u postgres psql -d "dbname=$DB_NAME user=$DB_USER password=$DB_USER_PASSWORD host='16.170.141.234'" < deploy/systemdata.sql
           # Populate system data 
-          source deploy/populatesystemdata.shgit
+          source deploy/populatesystemdata.sh
 
           # Collect static files of the project
           echo 'yes' | python3 manage.py collectstatic
