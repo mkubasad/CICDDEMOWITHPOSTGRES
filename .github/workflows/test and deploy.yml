@@ -51,6 +51,8 @@ jobs:
       shell: bash
       env:
         PRIVATE_KEY : ${{ secrets.AWS_DEMOSERVERRSAKEY  }}
+
+        DB_USER_PASSWORD: ${{ secrets.DB_USER_PASSWORD }}
       run: |
         pwd
         ls -la 
@@ -93,6 +95,9 @@ jobs:
           # Make django DB migrations
           echo "Making DB migrations"
           python3 manage.py migrate
+
+          # Populate system data
+          sudo -u postgres psql -d "dbname=$DB_NAME user=$DB_USER password=$DB_USER_PASSWORD host='16.170.141.234'" < ~/deploy/systemdata.sql
 
           # Collect static files of the project
           echo 'yes' | python3 manage.py collectstatic

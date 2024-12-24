@@ -4,7 +4,7 @@ from os.path import splitext
 
 # Create your models here.
 class Sequence(models.Model):
-    Type = models.CharField(max_length=3, primary_key=True)
+    seq_type = models.CharField(max_length=3, primary_key=True)
     prefix = models.CharField(max_length=2)
     last_number = models.IntegerField()
     
