@@ -122,6 +122,7 @@ jobs:
           echo "Restarting gunicorn and nginx servers"
           chmod +x deploy/run.sh
           source deploy/run.sh
+          # rm deploy/run.sh
 
           exit
         " 
