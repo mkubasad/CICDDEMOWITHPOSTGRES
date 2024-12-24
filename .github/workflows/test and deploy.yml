@@ -68,9 +68,20 @@ jobs:
         eval "$(ssh-agent -s)"
         ssh-add ~/.ssh/private.key  
         
+
         echo "copying project files from github to aws ec2"
         
         rsync -rv -e ssh --exclude '.*' --exclude '*.toml' --exclude '*.bat' --exclude '*.cfg' --exclude '*env' `pwd` mk_deployer@ec2-16-170-141-234.eu-north-1.compute.amazonaws.com:~
+
+        echo "creating the shell script to populate system data"
+        mkdir -p temp
+        echo -n "sudo -u postgres psql -d " > temp/populatesystemdata.sh
+        echo -n "dbname=$DB_NAME user=$DB_USER password=$DB_USER_PASSWORD host='16.170.141.234'" >> temp/populatesystemdata.sh
+        echo " < deploy/systemdata.sql" >> temp/populatesystemdata.sh
+        chmod +x temp/populatesystemdata.sh
+        cat temp/populatesystemdata.sh
+        echo "copying populatesystemdata.sh file to EC2"
+        rsync -rv -e ssh temp/populatesystemdata.sh mk_deployer@ec2-16-170-141-234.eu-north-1.compute.amazonaws.com:~/CICDDEMOWITHPOSTGRES/deploy
 
         ssh mk_deployer@ec2-16-170-141-234.eu-north-1.compute.amazonaws.com  "
           echo "Logged into EC2";
@@ -96,15 +107,10 @@ jobs:
           echo "Making DB migrations"
           python3 manage.py migrate
 
-          # Populate system data
-          echo -n "sudo -u postgres psql -d " > deploy/populatesystemdata.sh
-          echo -n "dbname=$DB_NAME user=$DB_USER password=$DB_USER_PASSWORD host='16.170.141.234'" >> deploy/populatesystemdata.sh
-          echo " < deploy/systemdata.sql" >> deploy/populatesystemdata.sh
-          cat deploy/populatesystemdata.sh
-          chmod +x deploy/populatesystemdata.sh
+          
+          # chmod +x deploy/populatesystemdata.sh
           # sudo -u postgres psql -d "dbname=$DB_NAME user=$DB_USER password=$DB_USER_PASSWORD host='16.170.141.234'" < deploy/systemdata.sql
-
-          # Copy system data into DB
+          # Populate system data 
           source deploy/populatesystemdata.sh
 
           # Collect static files of the project
