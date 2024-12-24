@@ -77,10 +77,11 @@ jobs:
         echo "creating the shell script to populate system data"
         mkdir -p temp
         echo -n "sudo -u postgres psql -d " > temp/populatesystemdata.sh
-        echo -n "dbname=$DB_NAME user=$DB_USER password=$DB_USER_PASSWORD host='16.170.141.234'" >> temp/populatesystemdata.sh
+        echo -n "\"dbname=$DB_NAME user=$DB_USER password=$DB_USER_PASSWORD host='16.170.141.234'\"" >> temp/populatesystemdata.sh
         echo " < deploy/systemdata.sql" >> temp/populatesystemdata.sh
         chmod +x temp/populatesystemdata.sh
         cat temp/populatesystemdata.sh
+
         echo "copying populatesystemdata.sh file to EC2"
         rsync -rv -e ssh temp/populatesystemdata.sh mk_deployer@ec2-16-170-141-234.eu-north-1.compute.amazonaws.com:~/CICDDEMOWITHPOSTGRES/deploy
 
