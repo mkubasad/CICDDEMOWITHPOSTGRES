@@ -1,0 +1,1 @@
+sudo -u postgres psql -d "dbname=$DB_NAME user=$DB_USER password=$DB_USER_PASSWORD host='16.170.141.234'" < deploy/systemdata.sql
