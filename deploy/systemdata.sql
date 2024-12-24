@@ -1,2 +1,5 @@
-truncate demo_sequence;
-insert into demo_sequence(seq_type, prefix, last_number) values('DR', 'DR', 1000);
+-- No need for resetting demo_sequence table. Tried for testing. But if there is a need for any
+-- system data to be populated every time, then this file is the place to put sql insert or update statements.
+-- 
+-- truncate demo_sequence;
+-- insert into demo_sequence(seq_type, prefix, last_number) values('DR', 'DR', 1000);
