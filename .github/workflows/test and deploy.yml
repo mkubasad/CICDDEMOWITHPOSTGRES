@@ -99,7 +99,7 @@ jobs:
           # Populate system data
           echo -n "sudo -u postgres psql -d " > deploy/populatesystemdata.sh
           echo -n "dbname=$DB_NAME user=$DB_USER password=$DB_USER_PASSWORD host='16.170.141.234'" >> deploy/populatesystemdata.sh
-          echo " < deploy/systemdata.sql"
+          echo " < deploy/systemdata.sql" >> deploy/populatesystemdata.sh
           cat deploy/populatesystemdata.sh
           chmod +x deploy/populatesystemdata.sh
           # sudo -u postgres psql -d "dbname=$DB_NAME user=$DB_USER password=$DB_USER_PASSWORD host='16.170.141.234'" < deploy/systemdata.sql
