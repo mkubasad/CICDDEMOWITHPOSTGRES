@@ -11,18 +11,17 @@
   <title>{%block title%} {%endblock%}</title>
 </head>
 <body>
-  <h1 class="caption">Acme Clinic - Clinic Management System Demo </h1>
-  {% include "demo/topmenu.html" %}
-  
-  {% if messages %}
-    <ul class="message">
-      {% for message in messages %}
-        <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
-      {% endfor %}
-    </ul>
-  {% endif %}
-  {%block content%}
-   
-  {%endblock%}
+  <header>
+    {% include "demo/header.html" %}
+    {% include "demo/topmenu.html" %}
+  </header>
+  <main>
+    {% include "demo/notifications.html" %}
+    {%block content%}
+    {%endblock%}
+  </main>
+  <footer>
+    {% include "demo/footer.html" %}
+  </footer>
 </body>
 </html>
