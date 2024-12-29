@@ -118,7 +118,7 @@ jobs:
           # Collect static files of the project
           echo 'yes' | python3 manage.py collectstatic
 
-          Restart the gunicorn and nginx servers
+          # Restart the gunicorn and nginx servers
           echo "Restarting gunicorn and nginx servers"
           chmod +x deploy/run.sh
           source deploy/run.sh
