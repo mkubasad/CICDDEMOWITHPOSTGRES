@@ -23,7 +23,7 @@ body {
 
 header, main, footer {
   display: grid;
-  place-content: center;
+  /* place-content: center; */
   text-align: center;
   grid-template-columns: 100%;
 }
@@ -45,6 +45,12 @@ footer {
 
 main {
   flex-grow: 1;
+}
+
+notification {
+  position: sticky;
+  top: 0;
+  text-align: left;
 }
 
 /* -------------- */
@@ -89,7 +95,7 @@ h3 {
 .tagline {
   /* background-color: dodgerblue; */
   color: whitesmoke;
-  font-size: 0.5em;
+  /* font-size: 0.5em; */
   text-align: center;
   font-style: oblique;
 }
