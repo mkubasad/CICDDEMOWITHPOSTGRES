@@ -40,6 +40,7 @@ header {
 
 footer {
   bottom: 0;
+  background-color: dodgerblue;
 }
 
 main {
@@ -60,12 +61,12 @@ h1.caption {
   /* background-repeat: repeat-x; */
   background-repeat: no-repeat;
   background-position: center center;
-  color: darkgray;
+  color: rgb(147, 203, 225);
   text-align: center; 
-  text-transform: uppercase;
-  /* letter-spacing: 5px;
-  word-spacing: 15px; */
-  font-size: 2rem;
+  /* text-transform: uppercase; */
+  /* letter-spacing: 5px; */
+  /* word-spacing: 15px; */
+  /* font-size: 2rem; */
   /* letter-spacing: 1rem; */
   /* word-spacing: 2rem; */
   padding: 0.5em;
@@ -75,7 +76,7 @@ h1.caption {
 
 h2 {
   /* background-color: darkblue; */
-  font-size: 1.5rem;
+  /* font-size: 1.5rem; */
   font-weight: bold;
   text-align: center; 
 }
@@ -84,6 +85,15 @@ h3 {
   font-weight: bold;
   text-align: left; 
 }
+
+.tagline {
+  /* background-color: dodgerblue; */
+  color: whitesmoke;
+  font-size: 0.5em;
+  text-align: center;
+  font-style: oblique;
+}
+
 input {
   background-color: antiquewhite;
 }

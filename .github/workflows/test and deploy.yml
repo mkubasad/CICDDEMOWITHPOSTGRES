@@ -72,7 +72,7 @@ jobs:
 
         echo "copying project files from github to aws ec2"
         
-        rsync -rv -e ssh --exclude '.*' --exclude '*.toml' --exclude '*.bat' --exclude '*.cfg' --exclude '*env' `pwd` mk_deployer@ec2-16-170-141-234.eu-north-1.compute.amazonaws.com:~
+        rsync -rv -e ssh --exclude '.*' --exclude '*.toml' --exclude '*.bat' --exclude '*.cfg' --exclude '*env' --exclude '*Env' `pwd` mk_deployer@ec2-16-170-141-234.eu-north-1.compute.amazonaws.com:~
 
         echo "creating the shell script to populate system data"
         mkdir -p temp
@@ -116,7 +116,7 @@ jobs:
           source deploy/populatesystemdata.sh
 
           # Collect static files of the project
-          echo 'yes' | python3 manage.py collectstatic
+          # python3 manage.py collectstatic --noinput --clear
 
           # Restart the gunicorn and nginx servers
           echo "Restarting gunicorn and nginx servers"
